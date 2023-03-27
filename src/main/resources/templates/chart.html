@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script th:inline="javascript">
+        const lineNames = [[${lineNames}]]
+        const data = [[${data}]]
+        const labels = [[${labels}]];
+
+        console.log(lineNames)
+
+        drawLineChart(labels, data, lineNames);
+    </script>
+</body>
+</html>
