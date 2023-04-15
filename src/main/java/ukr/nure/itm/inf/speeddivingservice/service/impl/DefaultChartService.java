@@ -53,7 +53,7 @@ public class DefaultChartService implements ChartService {
         for (Sportsman sportsman : sportsmen) {
             ChartLine chartLine = new ChartLine();
             chartLine.setName(sportsman.getSportsmanName());
-            List<Integer> singleData = new ArrayList<>(labels.size());
+            List<Double> singleData = new ArrayList<>(labels.size());
             for (int j = 0; j < labels.size(); j++) {
                 singleData.add(null);
             }
@@ -70,7 +70,7 @@ public class DefaultChartService implements ChartService {
                 int fullMonth = fullYears * 12 + activity.getDate().getMonthValue() - minDate.getMonthValue();
 
                 if (activity.getResult() != null && activity.getResult().getSecond() != 0) {
-                    singleData.set(fullMonth, activity.getResult().getMinute() * 60 + activity.getResult().getSecond());
+                    singleData.set(fullMonth, (double) (activity.getResult().getMinute() * 60 + activity.getResult().getSecond()));
                 }
             }
 
@@ -93,7 +93,7 @@ public class DefaultChartService implements ChartService {
                 ChartLine chartLine = new ChartLine();
                 chartLine.setName(activityType.getActivityTypeName());
 
-                List<Integer> singleData = new ArrayList<>(labels.size());
+                List<Double> singleData = new ArrayList<>(labels.size());
                 for (int j = 0; j < labels.size(); j++) {
                     singleData.add(null);
                 }
@@ -103,7 +103,7 @@ public class DefaultChartService implements ChartService {
                     int fullMonth = fullYears * 12 + activity.getDate().getMonthValue() - minDate.getMonthValue();
 
                     if (activity.getResult() != null && activity.getResult().getSecond() != 0) {
-                        singleData.set(fullMonth, activity.getResult().getMinute() * 60 + activity.getResult().getSecond());
+                        singleData.set(fullMonth, (double) activity.getResult().getMinute() * 60 + activity.getResult().getSecond());
                     }
                 }
 

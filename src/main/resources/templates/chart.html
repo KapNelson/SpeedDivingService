@@ -12,13 +12,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
     <script th:inline="javascript">
-        const lineNames = [[${lineNames}]]
-        const data = [[${data}]]
+        const chartLines = [[${chartLines}]]
         const labels = [[${labels}]];
 
-        console.log(lineNames)
+        console.log(chartLines)
 
-        drawLineChart(labels, data, lineNames);
+        drawLineChartWithRandomBorderColor(labels, chartLines);
     </script>
 </body>
 </html>

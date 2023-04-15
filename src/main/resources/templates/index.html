@@ -42,7 +42,7 @@
         <h2>Завантаження даних</h2>
         <form method="POST" action="/file/upload" enctype="multipart/form-data">
             <input name="file" type="file" value="Choose file"/>
-            <input type="submit" value="Upload"/>
+            <input type="submit" value="Завантажити"/>
         </form>
     </section>
     <section>
@@ -51,13 +51,31 @@
             <label> Дисципліна
                 <input name="activityType" type="text"/>
             </label>
-            <input type="submit" value="Draw"/>
+            <input type="submit" value="Побудувати"/>
         </form>
         <form method="POST" action="/chart/chartForSportsman">
             <label> Ім'я спортсмена
                 <input name="sportsmanName" type="text"/>
             </label>
-            <input type="submit" value="Draw"/>
+            <input type="submit" value="Побудувати"/>
+        </form>
+    </section>
+    <section>
+        <h2>Кластерізація</h2>
+        <form method="POST" action="/chart/chartForClusters">
+            <label> Дисципліна
+                <input name="activityType" type="text"/>
+            </label>
+            <label> Метод кластеризації
+                <select name="clusteringMethod">
+                    <option value="K_MEANS">K-Means</option>
+                    <option value="FUZZY_C_MEANS">Fuzzy C-Means</option>DBSCAN
+                </select>
+            </label>
+            <label> Нормалізувати
+                <input name="isNormalize" type="checkbox"/>
+            </label>
+            <input type="submit" value="Кластеризувати"/>
         </form>
     </section>
 </main>

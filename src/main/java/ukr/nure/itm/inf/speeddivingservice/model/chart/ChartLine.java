@@ -13,5 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ChartLine {
     private String name;
-    private List<Integer> data;
+    private List<Double> data;
+    private String color;
 }
