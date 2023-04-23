@@ -9,75 +9,87 @@
     <h1>Кластерізація часових рядів</h1>
 </header>
 <main id="main">
-    <section>
-        <h2>Про сайт</h2>
-        <p>
-            Цей сайт для кластеризації часових рядів досягнень спортсменів підводного плавання має на меті допомогти
-            тренерам та спортсменам в аналізі та візуалізації даних щодо результатів спортивних змагань з підводного
-            плавання.
-        </p>
-        <p>
-            З допомогою цього сайту, користувачі можуть відбирати та кластеризувати часові ряди досягнень спортсменів з
-            різних змагань, що дозволяє здійснювати порівняльний аналіз між ними. Кластеризація може допомогти
-            виокремити
-            спільні закономірності між різними змаганнями та групами спортсменів, що може бути корисно в процесі
-            розробки
-            тренувальних програм та стратегій.
-        </p>
-        <p>
-            На сайті можуть бути розміщені графіки, діаграми та інші візуальні елементи, що допомагають візуалізувати
-            дані
-            та зробити їх більш доступними для аналізу. Крім того, користувачі можуть застосовувати фільтри, щоб
-            відбирати
-            та аналізувати дані, які їх цікавлять.
-        </p>
-        <p>
-            Призначення сайту полягає у полегшенні аналізу та візуалізації даних про досягнення спортсменів у підводному
-            плаванні. Це може допомогти тренерам та спортсменам приймати більш обґрунтовані рішення, покращувати
-            тренувальні
-            програми та підвищувати результативність у змаганнях.
-        </p>
-    </section>
-    <section>
-        <h2>Завантаження даних</h2>
-        <form method="POST" action="/file/upload" enctype="multipart/form-data">
-            <input name="file" type="file" value="Choose file"/>
-            <input type="submit" value="Завантажити"/>
-        </form>
-    </section>
-    <section>
-        <h2>Побудова графіків</h2>
-        <form method="POST" action="/chart/chartForActivityType">
-            <label> Дисципліна
-                <input name="activityType" type="text"/>
-            </label>
-            <input type="submit" value="Побудувати"/>
-        </form>
-        <form method="POST" action="/chart/chartForSportsman">
-            <label> Ім'я спортсмена
-                <input name="sportsmanName" type="text"/>
-            </label>
-            <input type="submit" value="Побудувати"/>
-        </form>
-    </section>
-    <section>
-        <h2>Кластерізація</h2>
-        <form method="POST" action="/chart/chartForClusters">
-            <label> Дисципліна
-                <input name="activityType" type="text"/>
-            </label>
-            <label> Метод кластеризації
-                <select name="clusteringMethod">
-                    <option value="K_MEANS">K-Means</option>
-                    <option value="FUZZY_C_MEANS">Fuzzy C-Means</option>DBSCAN
-                </select>
-            </label>
-            <label> Нормалізувати
-                <input name="isNormalize" type="checkbox"/>
-            </label>
-            <input type="submit" value="Кластеризувати"/>
-        </form>
-    </section>
+    <details>
+        <summary>Про сайт</summary>
+        <section>
+            <p>
+                Цей сайт для кластеризації часових рядів досягнень спортсменів підводного плавання має на меті допомогти
+                тренерам та спортсменам в аналізі та візуалізації даних щодо результатів спортивних змагань з підводного
+                плавання.
+            </p>
+            <p>
+                З допомогою цього сайту, користувачі можуть відбирати та кластеризувати часові ряди досягнень
+                спортсменів з
+                різних змагань, що дозволяє здійснювати порівняльний аналіз між ними. Кластеризація може допомогти
+                виокремити
+                спільні закономірності між різними змаганнями та групами спортсменів, що може бути корисно в процесі
+                розробки
+                тренувальних програм та стратегій.
+            </p>
+            <p>
+                На сайті можуть бути розміщені графіки, діаграми та інші візуальні елементи, що допомагають
+                візуалізувати
+                дані
+                та зробити їх більш доступними для аналізу. Крім того, користувачі можуть застосовувати фільтри, щоб
+                відбирати
+                та аналізувати дані, які їх цікавлять.
+            </p>
+            <p>
+                Призначення сайту полягає у полегшенні аналізу та візуалізації даних про досягнення спортсменів у
+                підводному
+                плаванні. Це може допомогти тренерам та спортсменам приймати більш обґрунтовані рішення, покращувати
+                тренувальні
+                програми та підвищувати результативність у змаганнях.
+            </p>
+        </section>
+    </details>
+    <details>
+        <summary>Завантаження даних</summary>
+        <section>
+            <form method="POST" action="/file/upload" enctype="multipart/form-data">
+                <input name="file" type="file" value="Choose file"/>
+                <input type="submit" value="Завантажити"/>
+            </form>
+        </section>
+    </details>
+    <details>
+        <summary>Побудова графіків</summary>
+        <section>
+            <form method="POST" action="/chart/chartForActivityType">
+                <label> Дисципліна
+                    <input name="activityType" type="text"/>
+                </label>
+                <input type="submit" value="Побудувати"/>
+            </form>
+            <form method="POST" action="/chart/chartForSportsman">
+                <label> Ім'я спортсмена
+                    <input name="sportsmanName" type="text"/>
+                </label>
+                <input type="submit" value="Побудувати"/>
+            </form>
+        </section>
+    </details>
+    <details>
+        <summary>Кластерізація</summary>
+        <section>
+            <form method="POST" action="/chart/chartForClusters">
+                <label> Дисципліна
+                    <input name="activityType" type="text"/>
+                </label>
+                <label> Метод кластеризації
+                    <select name="clusteringMethod">
+                        <option value="K_MEANS">K-Means</option>
+                        <option value="FUZZY_C_MEANS">Fuzzy C-Means</option>
+                        DBSCAN
+                    </select>
+                </label>
+                <label> Нормалізувати
+                    <input name="isNormalize" type="checkbox"/>
+                </label>
+                <input type="submit" value="Кластеризувати"/>
+            </form>
+        </section>
+    </details>
 </main>
 </body>
 </html>

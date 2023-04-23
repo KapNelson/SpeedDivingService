@@ -64,3 +64,43 @@ form {
     border: 1px solid #ccc;
     padding: 20px;
 }
+
+details {
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+summary {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+summary::before {
+    content: "\25B6";
+    display: inline-block;
+    margin-right: 6px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+select {
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    font-size: 18px;
+}
