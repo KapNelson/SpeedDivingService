@@ -12,6 +12,7 @@ import ukr.nure.itm.inf.speeddivingservice.model.Sportsman;
 import ukr.nure.itm.inf.speeddivingservice.model.clustering.ClusteringData;
 import ukr.nure.itm.inf.speeddivingservice.repository.SportsmanRepository;
 import ukr.nure.itm.inf.speeddivingservice.service.ClusteringService;
+import ukr.nure.itm.inf.speeddivingservice.util.DTWDistance;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,47 +59,26 @@ public class DefaultClusteringService implements ClusteringService {
     }
 
     @Override
-    public List<ClusteringData> prepareToKMeansClustering(final List<ClusteringData> clusteringDataList) {
-        int maxResultSize = 0;
-        for (ClusteringData clusteringData : clusteringDataList) {
-            maxResultSize = Math.max(clusteringData.getData().size(), maxResultSize);
+    public List<CentroidCluster<ClusteringData>> kMeansClustering(final List<ClusteringData> clusteringDataList, final int k, final boolean isDTW, final boolean isNormalize) {
+        KMeansPlusPlusClusterer<ClusteringData> clusters;
+        if(isDTW) {
+            clusters = new KMeansPlusPlusClusterer<>(k, -1, new DTWDistance());
+        } else {
+            clusters = new KMeansPlusPlusClusterer<>(k);
         }
 
-        List<ClusteringData> newClusteringDataList = new ArrayList<>(clusteringDataList.size());
-        for (ClusteringData clusteringData : clusteringDataList) {
-            double sum = 0;
-            for (Double data : clusteringData.getData()) {
-                sum += data;
-            }
-
-            double avg = sum / clusteringData.getData().size();
-
-            List<Double> newDataList = new ArrayList<>(maxResultSize);
-            for (int i = 0; i < maxResultSize; i++) {
-                newDataList.add(avg);
-            }
-            for (int i = 0; i < clusteringData.getData().size(); i++) {
-                newDataList.set(i, clusteringData.getData().get(i));
-            }
-
-            Collections.shuffle(newDataList);
-            clusteringData.setData(newDataList);
-            newClusteringDataList.add(clusteringData);
-        }
-
-        return newClusteringDataList;
+        return clusters.cluster(isNormalize ? normalize(addAvgValueToVector(clusteringDataList)) : addAvgValueToVector(clusteringDataList));
     }
 
     @Override
-    public List<CentroidCluster<ClusteringData>> kMeansClustering(final List<ClusteringData> clusteringDataList, int k) {
-        KMeansPlusPlusClusterer<ClusteringData> clusters = new KMeansPlusPlusClusterer<>(k);
-        return clusters.cluster(clusteringDataList);
-    }
-
-    @Override
-    public List<CentroidCluster<ClusteringData>> cMeansClustering(final List<ClusteringData> clusteringDataList, int k) {
-        FuzzyKMeansClusterer<ClusteringData> clusters = new FuzzyKMeansClusterer<>(k, 2.0, 100, new EuclideanDistance());
-        return clusters.cluster(clusteringDataList);
+    public List<CentroidCluster<ClusteringData>> cMeansClustering(final List<ClusteringData> clusteringDataList, int k, final boolean isDTW, final boolean isNormalize) {
+        FuzzyKMeansClusterer<ClusteringData> clusters;
+        if(isDTW) {
+            clusters = new FuzzyKMeansClusterer<>(k, 2.0, 100, new DTWDistance());
+        } else {
+            clusters = new FuzzyKMeansClusterer<>(k, 2.0, 100, new EuclideanDistance());
+        }
+        return clusters.cluster(isNormalize ? normalize(addAvgValueToVector(clusteringDataList)) : addAvgValueToVector(clusteringDataList));
     }
 
     @Override
@@ -137,5 +117,37 @@ public class DefaultClusteringService implements ClusteringService {
             normalizedDataList.add(normalizedPoint);
         }
         return normalizedDataList;
+    }
+
+
+    private List<ClusteringData> addAvgValueToVector(final List<ClusteringData> clusteringDataList) {
+        int maxResultSize = 0;
+        for (ClusteringData clusteringData : clusteringDataList) {
+            maxResultSize = Math.max(clusteringData.getData().size(), maxResultSize);
+        }
+
+        List<ClusteringData> newClusteringDataList = new ArrayList<>(clusteringDataList.size());
+        for (ClusteringData clusteringData : clusteringDataList) {
+            double sum = 0;
+            for (Double data : clusteringData.getData()) {
+                sum += data;
+            }
+
+            double avg = sum / clusteringData.getData().size();
+
+            List<Double> newDataList = new ArrayList<>(maxResultSize);
+            for (int i = 0; i < maxResultSize; i++) {
+                newDataList.add(avg);
+            }
+            for (int i = 0; i < clusteringData.getData().size(); i++) {
+                newDataList.set(i, clusteringData.getData().get(i));
+            }
+
+            Collections.shuffle(newDataList);
+            clusteringData.setData(newDataList);
+            newClusteringDataList.add(clusteringData);
+        }
+
+        return newClusteringDataList;
     }
 }

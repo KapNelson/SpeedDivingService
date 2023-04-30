@@ -14,5 +14,8 @@ public interface ChartController {
     @RequestMapping(value = "/chartForSportsman", method = POST)
     String constructChartForSportsman(Model model, @RequestParam("sportsmanName") String sportsmanName);
     @RequestMapping(value = "/chartForClusters", method = POST)
-    String constructChartForActivityTypeClusters(Model model, @RequestParam("activityType") String activityType, @RequestParam(value = "clusteringMethod") ClusteringMethod clusteringMethod, @RequestParam(value = "isNormalize", required = false, defaultValue = "false") boolean isNormalize);
+    String constructChartForActivityTypeClusters(Model model, @RequestParam("activityType") String activityType,
+                                                 @RequestParam(value = "clusteringMethod") ClusteringMethod clusteringMethod,
+                                                 @RequestParam(value = "isNormalize", required = false, defaultValue = "false") boolean isNormalize,
+                                                 @RequestParam(value = "isDTW", required = false, defaultValue = "false") boolean isDTW);
 }

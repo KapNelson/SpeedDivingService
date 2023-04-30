@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface ClusteringService {
     List<ClusteringData> getClusteringDataForActivityTypeName(String activityTypeName);
-    List<ClusteringData> prepareToKMeansClustering(List<ClusteringData> clusteringDataList);
-    List<CentroidCluster<ClusteringData>> kMeansClustering(List<ClusteringData> clusteringDataList, int k);
-    List<CentroidCluster<ClusteringData>> cMeansClustering(List<ClusteringData> clusteringDataList, int k);
+    List<CentroidCluster<ClusteringData>> kMeansClustering(List<ClusteringData> clusteringDataList, int k, boolean isDTW, boolean isNormalize);
+    List<CentroidCluster<ClusteringData>> cMeansClustering(List<ClusteringData> clusteringDataList, int k, boolean isDTW, boolean isNormalize);
     List<ClusteringData> normalize(List<ClusteringData> dataList);
 }

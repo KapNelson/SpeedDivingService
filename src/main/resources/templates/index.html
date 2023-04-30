@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <title>Кластерізація часових рядів</title>
+    <title>Кластеризація часових рядів</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -9,7 +9,7 @@
     <h1>Кластерізація часових рядів</h1>
 </header>
 <main id="main">
-    <details>
+    <details open>
         <summary>Про сайт</summary>
         <section>
             <p>
@@ -72,7 +72,7 @@
     <details>
         <summary>Кластерізація</summary>
         <section>
-            <form method="POST" action="/chart/chartForClusters">
+            <form method="POST" action="/chart/chartForClusters" target="_blank">
                 <label> Дисципліна
                     <input name="activityType" type="text"/>
                 </label>
@@ -85,6 +85,9 @@
                 </label>
                 <label> Нормалізувати
                     <input name="isNormalize" type="checkbox"/>
+                </label>
+                <label> DTW
+                    <input name="isDTW" type="checkbox"/>
                 </label>
                 <input type="submit" value="Кластеризувати"/>
             </form>

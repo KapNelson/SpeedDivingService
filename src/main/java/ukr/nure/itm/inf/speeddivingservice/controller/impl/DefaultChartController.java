@@ -53,20 +53,16 @@ public class DefaultChartController implements ChartController {
     }
 
     @Override
-    public String constructChartForActivityTypeClusters(final Model model, final String activityType, final ClusteringMethod clusteringMethod, final boolean isNormalize) {
-        List<ClusteringData> clusteringDataList = clusteringService.prepareToKMeansClustering(clusteringService.getClusteringDataForActivityTypeName(activityType));
-
-        if (isNormalize) {
-            clusteringDataList = clusteringService.normalize(clusteringDataList);
-        }
+    public String constructChartForActivityTypeClusters(final Model model, final String activityType, final ClusteringMethod clusteringMethod, final boolean isNormalize, final boolean isDTW) {
+        List<ClusteringData> clusteringDataList = clusteringService.getClusteringDataForActivityTypeName(activityType);
 
         List<CentroidCluster<ClusteringData>> centroidClusters = null;
         switch (clusteringMethod) {
             case K_MEANS -> {
-                centroidClusters = clusteringService.kMeansClustering(clusteringDataList, 8);
+                centroidClusters = clusteringService.kMeansClustering(clusteringDataList, 8, isDTW, isNormalize);
             }
             case FUZZY_C_MEANS -> {
-                centroidClusters = clusteringService.cMeansClustering(clusteringDataList, 8);
+                centroidClusters = clusteringService.cMeansClustering(clusteringDataList, 8, isDTW, isNormalize);
             }
         }
 
