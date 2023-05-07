@@ -61,7 +61,7 @@ public class DefaultClusteringService implements ClusteringService {
     @Override
     public List<CentroidCluster<ClusteringData>> kMeansClustering(final List<ClusteringData> clusteringDataList, final int k, final boolean isDTW, final boolean isNormalize) {
         KMeansPlusPlusClusterer<ClusteringData> clusters;
-        if(isDTW) {
+        if (isDTW) {
             clusters = new KMeansPlusPlusClusterer<>(k, -1, new DTWDistance());
         } else {
             clusters = new KMeansPlusPlusClusterer<>(k);
@@ -73,7 +73,7 @@ public class DefaultClusteringService implements ClusteringService {
     @Override
     public List<CentroidCluster<ClusteringData>> cMeansClustering(final List<ClusteringData> clusteringDataList, int k, final boolean isDTW, final boolean isNormalize) {
         FuzzyKMeansClusterer<ClusteringData> clusters;
-        if(isDTW) {
+        if (isDTW) {
             clusters = new FuzzyKMeansClusterer<>(k, 2.0, 100, new DTWDistance());
         } else {
             clusters = new FuzzyKMeansClusterer<>(k, 2.0, 100, new EuclideanDistance());

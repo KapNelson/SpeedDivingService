@@ -10,7 +10,7 @@
     </parent>
     <groupId>ukr.nure.itm.inf</groupId>
     <artifactId>SpeedDivingService</artifactId>
-    <version>2023.04.03-SNAPSHOT</version>
+    <version>2023.05.01-SNAPSHOT</version>
     <name>SpeedDivingService</name>
     <description>SpeedDivingService</description>
     <properties>
